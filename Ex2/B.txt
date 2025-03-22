@@ -1,0 +1,22 @@
+1.
+
+*p3 = B, p3 = 0x5678
+*p3 = A, p3 = 0x1234
+*p1 = B, p1 = 0x5678
+
+2.
+
+*p = 5;
+
+3.
+
+Lỗi trong đoạn code này là không thể gán địa chỉ của một biến kiểu char cho một con trỏ kiểu double* mà không ép kiểu.
+
+Phân tích lỗi
+char c = 'C';
+double *p = &c; // Lỗi biên dịch
+c là biến kiểu char, chiếm 1 byte trong bộ nhớ.
+
+p là con trỏ kiểu double*, trỏ đến vùng nhớ của kiểu double, vốn chiếm 8 byte (trên hầu hết hệ thống hiện đại).
+
+Khi gán &c (địa chỉ của c, một vùng nhớ chỉ 1 byte) cho p (trỏ đến double, yêu cầu 8 byte), trình biên dịch báo lỗi vì không thể gán địa chỉ kiểu char* cho con trỏ double* mà không ép kiểu.
